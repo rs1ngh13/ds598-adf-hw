@@ -1,0 +1,9 @@
+{
+	"name": "DS598RajdeepSingh",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d324e8fe-7b35-4b19-be04-2a253f53bf52",
+		"tenantId": "d57d32cc-c121-488f-b07b-dfe705680c71"
+	}
+}
