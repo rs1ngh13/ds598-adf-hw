@@ -7,16 +7,20 @@
 		},
 		"parameters": {
 			"lat": {
-				"type": "float"
+				"type": "float",
+				"defaultValue": 42.3601
 			},
 			"lon": {
-				"type": "float"
+				"type": "float",
+				"defaultValue": -71.0589
 			},
 			"start": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "@string(div(sub(ticks(addDays(utcNow(), -365)), ticks('1970-01-01T00:00:00Z')), 10000000))"
 			},
 			"end": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "@string(div(sub(ticks(addDays(utcNow(), -1)), ticks('1970-01-01T00:00:00Z')), 10000000))"
 			},
 			"type": {
 				"type": "string"
