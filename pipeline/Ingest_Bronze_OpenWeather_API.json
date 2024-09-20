@@ -19,7 +19,7 @@
 					"url": "https://ds598-homework-vault.vault.azure.net/secrets/Open-Weather-API-Key?api-version=7.0",
 					"authentication": {
 						"type": "MSI",
-						"resource": "https://vault.azure.net"
+						"resource": "https://ds598-homework-vault.vault.azure.net"
 					}
 				}
 			},
