@@ -1,0 +1,29 @@
+{
+	"name": "RestResource2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Open_Weather_API_Air_Pollution",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"lat": {
+				"type": "float"
+			},
+			"lon": {
+				"type": "float"
+			},
+			"start": {
+				"type": "string"
+			},
+			"end": {
+				"type": "string"
+			},
+			"appid": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
