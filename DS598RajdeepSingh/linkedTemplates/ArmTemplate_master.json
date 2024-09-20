@@ -1,0 +1,119 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "DS598RajdeepSingh"
+		},
+		"Data_Lake_Storage_LinkedService_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Data_Lake_Storage_LinkedService'"
+		},
+		"Github_credential": {
+			"type": "secureString",
+			"metadata": "Secure string for 'credential' of 'Github'"
+		},
+		"Open_Weather_API_Air_Pollution_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Open_Weather_API_Air_Pollution'"
+		},
+		"Open_Weather_API_Weather_Data_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Open_Weather_API_Weather_Data'"
+		},
+		"Data_Lake_Storage_LinkedService_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://rajdeepsinghstorage.dfs.core.windows.net/"
+		},
+		"Github_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "rs1ngh13"
+		},
+		"Key_Vault_LinkedService_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://DS598-Homework-Vault.vault.azure.net/"
+		},
+		"Open_Weather_API_Air_Pollution_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": " http://api.openweathermap.org/ "
+		},
+		"Open_Weather_API_Air_Pollution_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "rsingh13@bu.edu"
+		},
+		"Open_Weather_API_Weather_Data_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": " https://history.openweathermap.org/"
+		},
+		"Open_Weather_API_Weather_Data_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "rsingh13@bu.edu"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "DS598RajdeepSingh_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"Data_Lake_Storage_LinkedService_accountKey": {
+						"value": "[parameters('Data_Lake_Storage_LinkedService_accountKey')]"
+					},
+					"Github_credential": {
+						"value": "[parameters('Github_credential')]"
+					},
+					"Open_Weather_API_Air_Pollution_password": {
+						"value": "[parameters('Open_Weather_API_Air_Pollution_password')]"
+					},
+					"Open_Weather_API_Weather_Data_password": {
+						"value": "[parameters('Open_Weather_API_Weather_Data_password')]"
+					},
+					"Data_Lake_Storage_LinkedService_properties_typeProperties_url": {
+						"value": "[parameters('Data_Lake_Storage_LinkedService_properties_typeProperties_url')]"
+					},
+					"Github_properties_typeProperties_username": {
+						"value": "[parameters('Github_properties_typeProperties_username')]"
+					},
+					"Key_Vault_LinkedService_properties_typeProperties_baseUrl": {
+						"value": "[parameters('Key_Vault_LinkedService_properties_typeProperties_baseUrl')]"
+					},
+					"Open_Weather_API_Air_Pollution_properties_typeProperties_url": {
+						"value": "[parameters('Open_Weather_API_Air_Pollution_properties_typeProperties_url')]"
+					},
+					"Open_Weather_API_Air_Pollution_properties_typeProperties_userName": {
+						"value": "[parameters('Open_Weather_API_Air_Pollution_properties_typeProperties_userName')]"
+					},
+					"Open_Weather_API_Weather_Data_properties_typeProperties_url": {
+						"value": "[parameters('Open_Weather_API_Weather_Data_properties_typeProperties_url')]"
+					},
+					"Open_Weather_API_Weather_Data_properties_typeProperties_userName": {
+						"value": "[parameters('Open_Weather_API_Weather_Data_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

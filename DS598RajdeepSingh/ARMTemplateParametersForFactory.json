@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "DS598RajdeepSingh"
+		},
+		"Data_Lake_Storage_LinkedService_accountKey": {
+			"value": ""
+		},
+		"Github_credential": {
+			"value": ""
+		},
+		"Open_Weather_API_Air_Pollution_password": {
+			"value": ""
+		},
+		"Open_Weather_API_Weather_Data_password": {
+			"value": ""
+		},
+		"Data_Lake_Storage_LinkedService_properties_typeProperties_url": {
+			"value": "https://rajdeepsinghstorage.dfs.core.windows.net/"
+		},
+		"Github_properties_typeProperties_username": {
+			"value": "rs1ngh13"
+		},
+		"Key_Vault_LinkedService_properties_typeProperties_baseUrl": {
+			"value": "https://DS598-Homework-Vault.vault.azure.net/"
+		},
+		"Open_Weather_API_Air_Pollution_properties_typeProperties_url": {
+			"value": " http://api.openweathermap.org/ "
+		},
+		"Open_Weather_API_Air_Pollution_properties_typeProperties_userName": {
+			"value": "rsingh13@bu.edu"
+		},
+		"Open_Weather_API_Weather_Data_properties_typeProperties_url": {
+			"value": " https://history.openweathermap.org/"
+		},
+		"Open_Weather_API_Weather_Data_properties_typeProperties_userName": {
+			"value": "rsingh13@bu.edu"
+		}
+	}
+}
