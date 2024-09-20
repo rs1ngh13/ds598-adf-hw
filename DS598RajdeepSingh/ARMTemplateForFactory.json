@@ -216,7 +216,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"items": {
-								"value": "@range(0, 52)",
+								"value": "@range(0, 2)",
 								"type": "Expression"
 							},
 							"isSequential": false,
