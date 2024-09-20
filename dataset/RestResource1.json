@@ -1,0 +1,32 @@
+{
+	"name": "RestResource1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Open_Weather_API_Weather_Data",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"lat": {
+				"type": "string"
+			},
+			"lon": {
+				"type": "string"
+			},
+			"start": {
+				"type": "string"
+			},
+			"end": {
+				"type": "string"
+			},
+			"type": {
+				"type": "string"
+			},
+			"appid": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
