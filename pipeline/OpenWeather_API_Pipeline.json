@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"method": "GET",
-					"url": "https://DS598-Homework-Vault.vault.azure.net/secrets/Open-Weather-API-Key?api-version=7.0",
+					"url": "https://DS598-Homework-Vault/secrets/OpenWeatherAPIKey?api-version=7.0",
 					"authentication": {
 						"type": "MSI",
 						"resource": "https://vault.azure.net"
@@ -37,7 +37,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@range(0, 2)",
+						"value": "@range(0, 52)",
 						"type": "Expression"
 					},
 					"isSequential": false,
@@ -88,7 +88,10 @@
 											"value": "@div(sub(ticks(addDays(utcNow(), mul(item(), -7))), ticks('1970-01-01T00:00:00Z')), 10000000)\n",
 											"type": "Expression"
 										},
-										"end": "@div(sub(ticks(addDays(utcNow(), add(mul(item(), -7), 6))), ticks('1970-01-01T00:00:00Z')), 10000000)",
+										"end": {
+											"value": "@div(sub(ticks(addDays(utcNow(), add(mul(item(), -7), 7))), ticks('1970-01-01T00:00:00Z')), 10000000)",
+											"type": "Expression"
+										},
 										"dataType": "hour",
 										"appid": {
 											"value": "@activity('Get_OpenWeather_API_Key').output.value",
