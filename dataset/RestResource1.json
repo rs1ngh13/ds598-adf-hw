@@ -7,20 +7,16 @@
 		},
 		"parameters": {
 			"lat": {
-				"type": "float",
-				"defaultValue": 42.3601
+				"type": "float"
 			},
 			"lon": {
-				"type": "float",
-				"defaultValue": -71.0589
+				"type": "float"
 			},
 			"start": {
-				"type": "string",
-				"defaultValue": "@string(div(sub(ticks(addDays(utcNow(), -365)), ticks('1970-01-01T00:00:00Z')), 10000000))"
+				"type": "string"
 			},
 			"end": {
-				"type": "string",
-				"defaultValue": "@string(div(sub(ticks(addDays(utcNow(), -1)), ticks('1970-01-01T00:00:00Z')), 10000000))"
+				"type": "string"
 			},
 			"type": {
 				"type": "string"
@@ -31,6 +27,9 @@
 		},
 		"annotations": [],
 		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": "data/2.5/history/city?lat=@{dataset().lat}&lon=@{data set().lon}&type=@{dataset().dataType}&start=@{dataset HW2: Historical Data Ingestion 11 ().start}&end=@{dataset().end}&appid=@{dataset().appi d}"
+		},
 		"schema": []
 	}
 }
