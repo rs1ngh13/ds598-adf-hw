@@ -292,7 +292,7 @@
 						"typeProperties": {
 							"method": "GET",
 							"headers": {},
-							"url": "https://DS598-Homework-Vault/secrets/OpenWeatherAPIKey?api-version=7.0",
+							"url": "https://DS598-Homework-Vault/secrets/Open-Weather-API-Key?api-version=7.0",
 							"authentication": {
 								"type": "MSI",
 								"resource": "https://vault.azure.net"
