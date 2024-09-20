@@ -195,7 +195,7 @@
 						"typeProperties": {
 							"method": "GET",
 							"headers": {},
-							"url": "https://DS598-Homework-Vault.vault.azure.net/secrets/Open-Weather-API-Key?api-version=7.0",
+							"url": "https://ds598-homework-vault.vault.azure.net/secrets/Open-Weather-API-Key?api-version=7.0",
 							"authentication": {
 								"type": "MSI",
 								"resource": "https://vault.azure.net"
@@ -216,7 +216,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"items": {
-								"value": "@range(0, 2)",
+								"value": "@range(0, 53)",
 								"type": "Expression"
 							},
 							"isSequential": false,
@@ -315,6 +315,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
+						"folderPath": "WeatherData",
 						"fileSystem": "bronze"
 					}
 				},
