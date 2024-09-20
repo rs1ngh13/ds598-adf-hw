@@ -359,7 +359,8 @@
 							"sink": {
 								"type": "JsonSink",
 								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
+									"type": "AzureBlobFSWriteSettings",
+									"copyBehavior": "FlattenHierarchy"
 								},
 								"formatSettings": {
 									"type": "JsonWriteSettings"
@@ -375,10 +376,13 @@
 									"lat": 42.3601,
 									"lon": -71.0589,
 									"start": {
-										"value": "@ticks(addDays(utcNow(), -365))",
+										"value": "@div(sub(ticks(addDays(utcNow(), -366)), ticks('1970-01-01T00:00:00Z')), 10000000)",
 										"type": "Expression"
 									},
-									"end": "@ticks(addDays(utcNow(), -1))",
+									"end": {
+										"value": "@div(sub(ticks(addDays(utcNow(), -1)), ticks('1970-01-01T00:00:00Z')), 10000000)",
+										"type": "Expression"
+									},
 									"appid": {
 										"value": "@activity('Get_Historical_AirPollution_Data').output.value",
 										"type": "Expression"
