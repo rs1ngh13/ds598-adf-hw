@@ -63,7 +63,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Get_Historical_AirPollution_Data",
+						"name": "Get_Historical_AirPollutionData",
 						"type": "WebActivity",
 						"dependsOn": [],
 						"policy": {
@@ -89,7 +89,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Get_Historical_AirPollution_Data",
+								"activity": "Get_Historical_AirPollutionData",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -141,7 +141,7 @@
 										"type": "Expression"
 									},
 									"appid": {
-										"value": "@activity('Get_Historical_AirPollution_Data').output.value",
+										"value": "@activity('Get_Historical_AirPollutionData').output.value",
 										"type": "Expression"
 									}
 								}
