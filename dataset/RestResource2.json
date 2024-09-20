@@ -25,7 +25,10 @@
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "http://api.openweathermap.org/data/2.5/air_pollution/history?lat={lat}&lon={lon}&start={start}&end={end}&appid={API key}"
+			"relativeUrl": {
+				"value": "data/2.5/air_pollution/history?lat=@{dataset().lat}&lon={dataset().lon}&start={start}&end={end}&appid={API key}",
+				"type": "Expression"
+			}
 		},
 		"schema": []
 	}
