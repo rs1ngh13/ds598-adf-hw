@@ -77,7 +77,7 @@
 						"typeProperties": {
 							"method": "GET",
 							"headers": {},
-							"url": "https://DS598-Homework-Vault/secrets/Open-Weather-API-Key?api-version=7.0",
+							"url": "https://DS598-Homework-Vault.vault.azure.net/secrets/Open-Weather-API-Key?api-version=7.0",
 							"authentication": {
 								"type": "MSI",
 								"resource": "https://vault.azure.net"
@@ -195,7 +195,7 @@
 						"typeProperties": {
 							"method": "GET",
 							"headers": {},
-							"url": "https://DS598-Homework-Vault/secrets/Open-Weather-API-Key?api-version=7.0",
+							"url": "https://DS598-Homework-Vault.vault.azure.net/secrets/Open-Weather-API-Key?api-version=7.0",
 							"authentication": {
 								"type": "MSI",
 								"resource": "https://vault.azure.net"
@@ -420,7 +420,10 @@
 				"annotations": [],
 				"type": "RestResource",
 				"typeProperties": {
-					"relativeUrl": "http://api.openweathermap.org/data/2.5/air_pollution/history?lat={lat}&lon={lon}&start={start}&end={end}&appid={API key}"
+					"relativeUrl": {
+						"value": "data/2.5/air_pollution/history?lat=@{dataset().lat}&lon={dataset().lon}&start={start}&end={end}&appid={API key}",
+						"type": "Expression"
+					}
 				},
 				"schema": []
 			},
