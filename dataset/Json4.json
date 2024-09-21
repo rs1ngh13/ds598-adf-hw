@@ -1,0 +1,32 @@
+{
+	"name": "Json4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HttpServer1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"start": {
+				"type": "string"
+			},
+			"end": {
+				"type": "string"
+			},
+			"appid": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "data/2.5/air_pollution/history?lat=42.3601&lon=71.0589&start=@{dataset(). start}&end=@{dataset(). end}&appid=@{dataset(). API key}",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {}
+	}
+}
