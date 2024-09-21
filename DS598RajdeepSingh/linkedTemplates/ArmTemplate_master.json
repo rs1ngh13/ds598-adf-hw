@@ -23,6 +23,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Open_Weather_API_Weather_Data'"
 		},
+		"HTTP_Open_Weather_API_AirPollution_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'HTTP_Open_Weather_API_AirPollution'"
+		},
 		"Data_Lake_Storage_LinkedService_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://rajdeepsinghstorage.dfs.core.windows.net/"
@@ -37,7 +41,7 @@
 		},
 		"Open_Weather_API_Air_Pollution_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": " https://api.openweathermap.org/ "
+			"defaultValue": " http://api.openweathermap.org/ "
 		},
 		"Open_Weather_API_Air_Pollution_properties_typeProperties_userName": {
 			"type": "string",
@@ -48,6 +52,14 @@
 			"defaultValue": " https://history.openweathermap.org/"
 		},
 		"Open_Weather_API_Weather_Data_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "rsingh13@bu.edu"
+		},
+		"HTTP_Open_Weather_API_AirPollution_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": " http://api.openweathermap.org/ "
+		},
+		"HTTP_Open_Weather_API_AirPollution_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "rsingh13@bu.edu"
 		},
@@ -90,6 +102,9 @@
 					"Open_Weather_API_Weather_Data_password": {
 						"value": "[parameters('Open_Weather_API_Weather_Data_password')]"
 					},
+					"HTTP_Open_Weather_API_AirPollution_password": {
+						"value": "[parameters('HTTP_Open_Weather_API_AirPollution_password')]"
+					},
 					"Data_Lake_Storage_LinkedService_properties_typeProperties_url": {
 						"value": "[parameters('Data_Lake_Storage_LinkedService_properties_typeProperties_url')]"
 					},
@@ -110,6 +125,12 @@
 					},
 					"Open_Weather_API_Weather_Data_properties_typeProperties_userName": {
 						"value": "[parameters('Open_Weather_API_Weather_Data_properties_typeProperties_userName')]"
+					},
+					"HTTP_Open_Weather_API_AirPollution_properties_typeProperties_url": {
+						"value": "[parameters('HTTP_Open_Weather_API_AirPollution_properties_typeProperties_url')]"
+					},
+					"HTTP_Open_Weather_API_AirPollution_properties_typeProperties_userName": {
+						"value": "[parameters('HTTP_Open_Weather_API_AirPollution_properties_typeProperties_userName')]"
 					}
 				}
 			},

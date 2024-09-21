@@ -17,6 +17,9 @@
 		"Open_Weather_API_Weather_Data_password": {
 			"value": ""
 		},
+		"HTTP_Open_Weather_API_AirPollution_password": {
+			"value": ""
+		},
 		"Data_Lake_Storage_LinkedService_properties_typeProperties_url": {
 			"value": "https://rajdeepsinghstorage.dfs.core.windows.net/"
 		},
@@ -27,7 +30,7 @@
 			"value": "https://DS598-Homework-Vault.vault.azure.net/"
 		},
 		"Open_Weather_API_Air_Pollution_properties_typeProperties_url": {
-			"value": " https://api.openweathermap.org/ "
+			"value": " http://api.openweathermap.org/ "
 		},
 		"Open_Weather_API_Air_Pollution_properties_typeProperties_userName": {
 			"value": "rsingh13@bu.edu"
@@ -36,6 +39,12 @@
 			"value": " https://history.openweathermap.org/"
 		},
 		"Open_Weather_API_Weather_Data_properties_typeProperties_userName": {
+			"value": "rsingh13@bu.edu"
+		},
+		"HTTP_Open_Weather_API_AirPollution_properties_typeProperties_url": {
+			"value": " http://api.openweathermap.org/ "
+		},
+		"HTTP_Open_Weather_API_AirPollution_properties_typeProperties_userName": {
 			"value": "rsingh13@bu.edu"
 		}
 	}
