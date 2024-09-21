@@ -37,7 +37,7 @@
 		},
 		"Open_Weather_API_Air_Pollution_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": " http://api.openweathermap.org/ "
+			"defaultValue": " https://api.openweathermap.org/ "
 		},
 		"Open_Weather_API_Air_Pollution_properties_typeProperties_userName": {
 			"type": "string",
