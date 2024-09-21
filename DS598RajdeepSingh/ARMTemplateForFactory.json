@@ -108,7 +108,10 @@
 								"type": "RestSource",
 								"httpRequestTimeout": "00:01:40",
 								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET"
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
 							},
 							"sink": {
 								"type": "JsonSink",
@@ -130,7 +133,7 @@
 									"lat": 42.3601,
 									"lon": -71.0589,
 									"start": {
-										"value": "@div(sub(ticks(addDays(utcNow(), -7)), ticks('1970-01-01T00:00:00Z')), 10000000)",
+										"value": "@div(sub(ticks(addDays(utcNow(), -366)), ticks('1970-01-01T00:00:00Z')), 10000000)",
 										"type": "Expression"
 									},
 									"end": {
