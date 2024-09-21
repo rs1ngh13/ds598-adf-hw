@@ -44,12 +44,13 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "RestSource",
-						"httpRequestTimeout": "00:01:40",
-						"requestInterval": "00.00:00:00.010",
-						"requestMethod": "GET",
-						"paginationRules": {
-							"supportRFC5988": "true"
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET"
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
 						}
 					},
 					"sink": {
@@ -66,14 +67,15 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "RestResource2",
+						"referenceName": "Json4",
 						"type": "DatasetReference",
 						"parameters": {
-							"lat": 42.3601,
-							"lon": -71.0589,
 							"start": "@div(sub(ticks(addDays(utcNow(), -366)), ticks('1970-01-01T00:00:00Z')), 10000000)",
 							"end": "@div(sub(ticks(addDays(utcNow(), -1)), ticks('1970-01-01T00:00:00Z')), 10000000)",
-							"appid": "@activity('Get_Historical_AirPollutionData').output.value"
+							"appid": {
+								"value": "@activity('Get_Historical_AirPollutionData').output",
+								"type": "Expression"
+							}
 						}
 					}
 				],
