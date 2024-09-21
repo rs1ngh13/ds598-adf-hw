@@ -2,7 +2,7 @@
 	"name": "Json4",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "HttpServer1",
+			"referenceName": "HTTP_Open_Weather_API_AirPollution",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
