@@ -1,10 +1,6 @@
 {
 	"name": "RestResource2",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "Open_Weather_API_Air_Pollution",
-			"type": "LinkedServiceReference"
-		},
 		"parameters": {
 			"lat": {
 				"type": "float"
