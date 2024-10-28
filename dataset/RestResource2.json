@@ -1,6 +1,10 @@
 {
 	"name": "RestResource2",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Open_Weather_API_Weather_Data",
+			"type": "LinkedServiceReference"
+		},
 		"parameters": {
 			"lat": {
 				"type": "float"
