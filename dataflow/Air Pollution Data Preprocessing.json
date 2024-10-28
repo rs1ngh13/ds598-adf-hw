@@ -15,7 +15,13 @@
 			"sinks": [],
 			"transformations": [
 				{
-					"name": "flatten1"
+					"name": "AssignSourceColumns"
+				},
+				{
+					"name": "CorrectedTimestampAndLocation"
+				},
+				{
+					"name": "filter1"
 				}
 			],
 			"scriptLines": [
@@ -45,7 +51,10 @@
 				"          timestamp = list.dt",
 				"     ),",
 				"     skipDuplicateMapInputs: false,",
-				"     skipDuplicateMapOutputs: false) ~> flatten1"
+				"     skipDuplicateMapOutputs: false) ~> AssignSourceColumns",
+				"AssignSourceColumns derive(corrected_timestamp = iif(length(toString(timestamp)) == 10, toInteger(timestamp), toInteger(null())),",
+				"          location = 'Boston') ~> CorrectedTimestampAndLocation",
+				"CorrectedTimestampAndLocation filter(!isNull(aqi) && !isNull(timestamp)) ~> filter1"
 			]
 		}
 	}
