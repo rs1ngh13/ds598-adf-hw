@@ -84,7 +84,10 @@
 				"          lon = -71.0589,",
 				"          lat = 42.3601,",
 				"          weather_id_value = toInteger(split(toString(weather_id), ': ')[1])",
-				") ~> ProperConversions"
+				",",
+				"          weather_main_value = split(weather_main, ': ')[1],",
+				"          weather_description_value = split(weather_description, ': ')[1],",
+				"          weather_icon_value = split(weather_icon, ': ')[1]) ~> ProperConversions"
 			]
 		}
 	}
