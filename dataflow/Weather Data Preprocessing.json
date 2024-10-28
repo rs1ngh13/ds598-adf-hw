@@ -18,7 +18,11 @@
 						"referenceName": "WeatherData",
 						"type": "DatasetReference"
 					},
-					"name": "toSilver"
+					"name": "toSilver",
+					"rejectedDataLinkedService": {
+						"referenceName": "Data_Lake_Storage_LinkedService",
+						"type": "LinkedServiceReference"
+					}
 				}
 			],
 			"transformations": [
