@@ -25,6 +25,9 @@
 				},
 				{
 					"name": "ProperConversions"
+				},
+				{
+					"name": "AddKelvinToTemp"
 				}
 			],
 			"scriptLines": [
@@ -87,7 +90,15 @@
 				",",
 				"          weather_main_value = split(weather_main, ': ')[1],",
 				"          weather_description_value = split(weather_description, ': ')[1],",
-				"          weather_icon_value = split(weather_icon, ': ')[1]) ~> ProperConversions"
+				"          weather_icon_value = split(weather_icon, ': ')[1]) ~> ProperConversions",
+				"ProperConversions select(mapColumn(",
+				"          feels_like_K = feels_like,",
+				"          temp_K = temp,",
+				"          temp_max_K = temp_max,",
+				"          temp_min_K = temp_min",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> AddKelvinToTemp"
 			]
 		}
 	}
