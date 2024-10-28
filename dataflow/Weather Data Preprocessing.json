@@ -16,6 +16,9 @@
 			"transformations": [
 				{
 					"name": "flatten1"
+				},
+				{
+					"name": "derivedColumn1"
 				}
 			],
 			"scriptLines": [
@@ -56,7 +59,11 @@
 				"          wind_speed = list.wind.speed",
 				"     ),",
 				"     skipDuplicateMapInputs: false,",
-				"     skipDuplicateMapOutputs: false) ~> flatten1"
+				"     skipDuplicateMapOutputs: false) ~> flatten1",
+				"flatten1 derive(corrected_timestamp = iif(length(toString(timestamp)) == 10, toInteger(timestamp), toInteger(null()))",
+				"",
+				",",
+				"          location = 'Boston') ~> derivedColumn1"
 			]
 		}
 	}
