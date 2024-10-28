@@ -22,6 +22,9 @@
 				},
 				{
 					"name": "FilterAQIandTimestamp"
+				},
+				{
+					"name": "ProperConversion"
 				}
 			],
 			"scriptLines": [
@@ -54,7 +57,10 @@
 				"     skipDuplicateMapOutputs: false) ~> AssignSourceColumns",
 				"AssignSourceColumns derive(corrected_timestamp = iif(length(toString(timestamp)) == 10, toInteger(timestamp), toInteger(null())),",
 				"          location = 'Boston') ~> CorrectedTimestampAndLocation",
-				"CorrectedTimestampAndLocation filter(!isNull(aqi) && !isNull(corrected_timestamp)) ~> FilterAQIandTimestamp"
+				"CorrectedTimestampAndLocation filter(!isNull(aqi) && !isNull(corrected_timestamp)) ~> FilterAQIandTimestamp",
+				"FilterAQIandTimestamp derive(corrected_timestamp = toTimestamp(toLong(corrected_timestamp) * 1000),",
+				"          id = concat('location_value', '_', toString(corrected_timestamp)),",
+				"          column1 = ERROR_FUNCTION('')) ~> ProperConversion"
 			]
 		}
 	}
