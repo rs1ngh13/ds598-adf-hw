@@ -72,7 +72,18 @@
 				"          location = 'Boston') ~> CorrectedTimestampAndLocation",
 				"CorrectedTimestampAndLocation filter(!isNull(temp) && !isNull(humidity) && !isNull(timestamp)",
 				") ~> FilterCriticalColumn",
-				"FilterCriticalColumn derive() ~> ProperConversions"
+				"FilterCriticalColumn derive(date_time = toTimestamp(toLong(corrected_timestamp) * 1000),",
+				"          id = concat(location, '_', toString(corrected_timestamp)),",
+				"          temp_C = round(temp - 273.15, 2),",
+				"          temp_min_C = round(temp_min - 273.15, 2),",
+				"          temp_max_C = round(temp_max - 273.15, 2),",
+				"          feels_like_C = round(feels_like - 273.15, 2),",
+				"          temp_min_F = round((temp_min - 273.15) * 9/5 + 32, 2),",
+				"          temp_max_F = round((temp_max - 273.15) * 9/5 + 32, 2),",
+				"          feels_like_F = round((temp_max - 273.15) * 9/5 + 32, 2),",
+				"          lon = -71.0589,",
+				"          lat = 42.3601,",
+				"          weather_id_value = toInteger(split(id, ': ')[1])) ~> ProperConversions"
 			]
 		}
 	}
