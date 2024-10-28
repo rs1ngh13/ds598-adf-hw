@@ -57,6 +57,52 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/AirPollutionData_Data_Flow')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "AirPollutionData_Data_Flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Air Pollution Data Preprocessing",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"StreamAirPollutionData": {},
+									"toSilver": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/Air Pollution Data Preprocessing')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Ingest_Bronze_AirPollution_API')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -330,6 +376,30 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/dataflows/Weather Data Preprocessing')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AirPollution')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Data_Lake_Storage_LinkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "silver"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Data_Lake_Storage_LinkedService')]"
 			]
 		},
 		{
@@ -1110,30 +1180,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/Stream_WeatherData')]",
 				"[concat(variables('factoryId'), '/datasets/WeatherData')]",
-				"[concat(variables('factoryId'), '/linkedServices/Data_Lake_Storage_LinkedService')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AirPollution')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Data_Lake_Storage_LinkedService",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "silver"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": []
-			},
-			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/Data_Lake_Storage_LinkedService')]"
 			]
 		}
