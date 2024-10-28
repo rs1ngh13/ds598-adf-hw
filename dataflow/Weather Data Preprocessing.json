@@ -9,16 +9,22 @@
 						"referenceName": "Stream_WeatherData",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "StreamWeatherData"
 				}
 			],
 			"sinks": [],
 			"transformations": [
 				{
-					"name": "flatten1"
+					"name": "AssignSourceColumns"
 				},
 				{
-					"name": "derivedColumn1"
+					"name": "CorrectedTimestampAndLocation"
+				},
+				{
+					"name": "FilterCriticalColumn"
+				},
+				{
+					"name": "ProperConversions"
 				}
 			],
 			"scriptLines": [
@@ -34,8 +40,8 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine',",
-				"     wildcardPaths:['*.json']) ~> source1",
-				"source1 foldDown(unroll(),",
+				"     wildcardPaths:['*.json']) ~> StreamWeatherData",
+				"StreamWeatherData foldDown(unroll(),",
 				"     mapColumn(",
 				"          calctime,",
 				"          city_id,",
@@ -59,11 +65,14 @@
 				"          wind_speed = list.wind.speed",
 				"     ),",
 				"     skipDuplicateMapInputs: false,",
-				"     skipDuplicateMapOutputs: false) ~> flatten1",
-				"flatten1 derive(corrected_timestamp = iif(length(toString(timestamp)) == 10, toInteger(timestamp), toInteger(null()))",
+				"     skipDuplicateMapOutputs: false) ~> AssignSourceColumns",
+				"AssignSourceColumns derive(corrected_timestamp = iif(length(toString(timestamp)) == 10, toInteger(timestamp), toInteger(null()))",
 				"",
 				",",
-				"          location = 'Boston') ~> derivedColumn1"
+				"          location = 'Boston') ~> CorrectedTimestampAndLocation",
+				"CorrectedTimestampAndLocation filter(!isNull(temp) && !isNull(humidity) && !isNull(timestamp)",
+				") ~> FilterCriticalColumn",
+				"FilterCriticalColumn derive() ~> ProperConversions"
 			]
 		}
 	}
