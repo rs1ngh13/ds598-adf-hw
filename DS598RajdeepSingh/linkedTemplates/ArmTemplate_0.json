@@ -456,29 +456,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/to_Silver')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Data_Lake_Storage_LinkedService",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "silver"
-					}
-				},
-				"schema": {}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Data_Lake_Storage_LinkedService')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/WeatherData')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -497,6 +474,29 @@
 					"compressionCodec": "snappy"
 				},
 				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Data_Lake_Storage_LinkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/to_Silver')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Data_Lake_Storage_LinkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "silver"
+					}
+				},
+				"schema": {}
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/Data_Lake_Storage_LinkedService')]"
@@ -754,7 +754,11 @@
 								"referenceName": "WeatherData",
 								"type": "DatasetReference"
 							},
-							"name": "toSilver"
+							"name": "toSilver",
+							"rejectedDataLinkedService": {
+								"referenceName": "Data_Lake_Storage_LinkedService",
+								"type": "LinkedServiceReference"
+							}
 						}
 					],
 					"transformations": [
@@ -813,12 +817,9 @@
 						"     ),",
 						"     skipDuplicateMapInputs: false,",
 						"     skipDuplicateMapOutputs: false) ~> AssignSourceColumns",
-						"AssignSourceColumns derive(corrected_timestamp = iif(length(toString(timestamp)) == 10, toInteger(timestamp), toInteger(null()))",
-						"",
-						",",
+						"AssignSourceColumns derive(corrected_timestamp = iif(length(toString(timestamp)) == 10, toInteger(timestamp), toInteger(null())),",
 						"          location = 'Boston') ~> CorrectedTimestampAndLocation",
-						"CorrectedTimestampAndLocation filter(!isNull(temp) && !isNull(humidity) && !isNull(timestamp)",
-						") ~> FilterCriticalColumn",
+						"CorrectedTimestampAndLocation filter(!isNull(temp) && !isNull(humidity) && !isNull(timestamp)) ~> FilterCriticalColumn",
 						"FilterCriticalColumn derive(date_time = toTimestamp(toLong(corrected_timestamp) * 1000),",
 						"          id = concat(location, '_', toString(corrected_timestamp)),",
 						"          temp_C = round(temp - 273.15, 2),",
@@ -830,8 +831,7 @@
 						"          feels_like_F = round((temp_max - 273.15) * 9/5 + 32, 2),",
 						"          lon = -71.0589,",
 						"          lat = 42.3601,",
-						"          weather_id_value = toInteger(split(toString(weather_id), ': ')[1])",
-						",",
+						"          weather_id_value = toInteger(split(toString(weather_id), ': ')[1]),",
 						"          weather_main_value = split(weather_main, ': ')[1],",
 						"          weather_description_value = split(weather_description, ': ')[1],",
 						"          weather_icon_value = split(weather_icon, ': ')[1]) ~> ProperConversions",
@@ -856,7 +856,8 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/Stream_WeatherData')]",
-				"[concat(variables('factoryId'), '/datasets/WeatherData')]"
+				"[concat(variables('factoryId'), '/datasets/WeatherData')]",
+				"[concat(variables('factoryId'), '/linkedServices/Data_Lake_Storage_LinkedService')]"
 			]
 		},
 		{
