@@ -1,0 +1,83 @@
+{
+	"name": "AirPollutionData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Data_Lake_Storage_LinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "data_bc636842-73a2-4006-a4f5-73e607acaa55_9ffd0345-7ac4-49f8-8fd3-799d92a5063c",
+				"folderPath": "AirPollutionData",
+				"fileSystem": "bronze"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"coord": {
+					"type": "object",
+					"properties": {
+						"lon": {
+							"type": "number"
+						},
+						"lat": {
+							"type": "number"
+						}
+					}
+				},
+				"list": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"main": {
+								"type": "object",
+								"properties": {
+									"aqi": {
+										"type": "integer"
+									}
+								}
+							},
+							"components": {
+								"type": "object",
+								"properties": {
+									"co": {
+										"type": "number"
+									},
+									"no": {
+										"type": "integer"
+									},
+									"no2": {
+										"type": "number"
+									},
+									"o3": {
+										"type": "number"
+									},
+									"so2": {
+										"type": "number"
+									},
+									"pm2_5": {
+										"type": "number"
+									},
+									"pm10": {
+										"type": "number"
+									},
+									"nh3": {
+										"type": "number"
+									}
+								}
+							},
+							"dt": {
+								"type": "integer"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
