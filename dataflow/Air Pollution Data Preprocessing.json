@@ -13,7 +13,11 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "flatten1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          coord as (lon as double, lat as double),",
@@ -22,7 +26,26 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     documentForm: 'documentPerLine') ~> StreamAirPollutionData"
+				"     documentForm: 'documentPerLine') ~> StreamAirPollutionData",
+				"StreamAirPollutionData foldDown(unroll(),",
+				"     mapColumn(",
+				"          coord,",
+				"          list,",
+				"          lon = coord.lon,",
+				"          lat = coord.lat,",
+				"          aqi = list.main.aqi,",
+				"          co = list.components.co,",
+				"          no = list.components.no,",
+				"          no2 = list.components.no2,",
+				"          o3 = list.components.o3,",
+				"          so2 = list.components.so2,",
+				"          pm2_5 = list.components.pm2_5,",
+				"          pm10 = list.components.pm10,",
+				"          nh3 = list.components.nh3,",
+				"          timestamp = list.dt",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> flatten1"
 			]
 		}
 	}
