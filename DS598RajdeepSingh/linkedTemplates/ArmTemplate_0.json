@@ -15,17 +15,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'credential' of 'Github'"
 		},
-		"Open_Weather_API_Air_Pollution_password": {
+		"HTTP_Open_Weather_API_AirPollution_password": {
 			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'Open_Weather_API_Air_Pollution'"
+			"metadata": "Secure string for 'password' of 'HTTP_Open_Weather_API_AirPollution'"
 		},
 		"Open_Weather_API_Weather_Data_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Open_Weather_API_Weather_Data'"
-		},
-		"HTTP_Open_Weather_API_AirPollution_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'HTTP_Open_Weather_API_AirPollution'"
 		},
 		"Data_Lake_Storage_LinkedService_properties_typeProperties_url": {
 			"type": "string",
@@ -35,31 +31,23 @@
 			"type": "string",
 			"defaultValue": "rs1ngh13"
 		},
-		"Key_Vault_LinkedService_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://DS598-Homework-Vault.vault.azure.net/"
-		},
-		"Open_Weather_API_Air_Pollution_properties_typeProperties_url": {
+		"HTTP_Open_Weather_API_AirPollution_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": " http://api.openweathermap.org/ "
 		},
-		"Open_Weather_API_Air_Pollution_properties_typeProperties_userName": {
+		"HTTP_Open_Weather_API_AirPollution_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "rsingh13@bu.edu"
+		},
+		"Key_Vault_LinkedService_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://DS598-Homework-Vault.vault.azure.net/"
 		},
 		"Open_Weather_API_Weather_Data_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": " https://history.openweathermap.org/"
 		},
 		"Open_Weather_API_Weather_Data_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "rsingh13@bu.edu"
-		},
-		"HTTP_Open_Weather_API_AirPollution_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": " http://api.openweathermap.org/ "
-		},
-		"HTTP_Open_Weather_API_AirPollution_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "rsingh13@bu.edu"
 		}
@@ -104,6 +92,26 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/HTTP_Open_Weather_API_AirPollution')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "HttpServer",
+				"typeProperties": {
+					"url": "[parameters('HTTP_Open_Weather_API_AirPollution_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Basic",
+					"userName": "[parameters('HTTP_Open_Weather_API_AirPollution_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('HTTP_Open_Weather_API_AirPollution_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Key_Vault_LinkedService')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -112,26 +120,6 @@
 				"type": "AzureKeyVault",
 				"typeProperties": {
 					"baseUrl": "[parameters('Key_Vault_LinkedService_properties_typeProperties_baseUrl')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Open_Weather_API_Air_Pollution')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('Open_Weather_API_Air_Pollution_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Basic",
-					"userName": "[parameters('Open_Weather_API_Air_Pollution_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('Open_Weather_API_Air_Pollution_password')]"
-					}
 				}
 			},
 			"dependsOn": []
@@ -151,26 +139,6 @@
 					"password": {
 						"type": "SecureString",
 						"value": "[parameters('Open_Weather_API_Weather_Data_password')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/HTTP_Open_Weather_API_AirPollution')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "HttpServer",
-				"typeProperties": {
-					"url": "[parameters('HTTP_Open_Weather_API_AirPollution_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Basic",
-					"userName": "[parameters('HTTP_Open_Weather_API_AirPollution_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('HTTP_Open_Weather_API_AirPollution_password')]"
 					}
 				}
 			},
@@ -334,7 +302,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Open_Weather_API_Air_Pollution",
+					"referenceName": "Open_Weather_API_Weather_Data",
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
@@ -365,7 +333,173 @@
 				"schema": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Open_Weather_API_Air_Pollution')]"
+				"[concat(variables('factoryId'), '/linkedServices/Open_Weather_API_Weather_Data')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Stream_WeatherData')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Data_Lake_Storage_LinkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "WeatherData",
+						"fileSystem": "bronze"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"message": {
+							"type": "string"
+						},
+						"cod": {
+							"type": "string"
+						},
+						"city_id": {
+							"type": "integer"
+						},
+						"calctime": {
+							"type": "number"
+						},
+						"cnt": {
+							"type": "integer"
+						},
+						"list": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"dt": {
+										"type": "integer"
+									},
+									"main": {
+										"type": "object",
+										"properties": {
+											"temp": {
+												"type": "number"
+											},
+											"feels_like": {
+												"type": "number"
+											},
+											"pressure": {
+												"type": "integer"
+											},
+											"humidity": {
+												"type": "integer"
+											},
+											"temp_min": {
+												"type": "number"
+											},
+											"temp_max": {
+												"type": "number"
+											}
+										}
+									},
+									"wind": {
+										"type": "object",
+										"properties": {
+											"speed": {
+												"type": "number"
+											},
+											"deg": {
+												"type": "integer"
+											},
+											"gust": {
+												"type": "number"
+											}
+										}
+									},
+									"clouds": {
+										"type": "object",
+										"properties": {
+											"all": {
+												"type": "integer"
+											}
+										}
+									},
+									"weather": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"id": {
+													"type": "integer"
+												},
+												"main": {
+													"type": "string"
+												},
+												"description": {
+													"type": "string"
+												},
+												"icon": {
+													"type": "string"
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Data_Lake_Storage_LinkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/to_Silver')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Data_Lake_Storage_LinkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "silver"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Data_Lake_Storage_LinkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/WeatherData')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Data_Lake_Storage_LinkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "silver"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Data_Lake_Storage_LinkedService')]"
 			]
 		},
 		{
@@ -596,6 +730,133 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/RestResource1')]",
 				"[concat(variables('factoryId'), '/datasets/Json1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Weather Data Preprocessing')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "Stream_WeatherData",
+								"type": "DatasetReference"
+							},
+							"name": "StreamWeatherData"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "WeatherData",
+								"type": "DatasetReference"
+							},
+							"name": "toSilver"
+						}
+					],
+					"transformations": [
+						{
+							"name": "AssignSourceColumns"
+						},
+						{
+							"name": "CorrectedTimestampAndLocation"
+						},
+						{
+							"name": "FilterCriticalColumn"
+						},
+						{
+							"name": "ProperConversions"
+						},
+						{
+							"name": "AddKelvinToTemp"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          message as string,",
+						"          cod as string,",
+						"          city_id as integer,",
+						"          calctime as double,",
+						"          cnt as integer,",
+						"          list as (dt as integer, main as (temp as double, feels_like as double, pressure as integer, humidity as integer, temp_min as double, temp_max as double), wind as (speed as double, deg as integer, gust as double), clouds as (all as integer), weather as (id as integer, main as string, description as string, icon as string)[])[]",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false,",
+						"     documentForm: 'documentPerLine',",
+						"     wildcardPaths:['*.json']) ~> StreamWeatherData",
+						"StreamWeatherData foldDown(unroll(),",
+						"     mapColumn(",
+						"          calctime,",
+						"          city_id,",
+						"          cnt,",
+						"          cod,",
+						"          message,",
+						"          clouds_all = list.clouds.all,",
+						"          timestamp = list.dt,",
+						"          feels_like = list.main.feels_like,",
+						"          humidity = list.main.humidity,",
+						"          pressure = list.main.pressure,",
+						"          temp = list.main.temp,",
+						"          temp_max = list.main.temp_max,",
+						"          temp_min = list.main.temp_min,",
+						"          weather_description = list.weather.description,",
+						"          weather_icon = list.weather.icon,",
+						"          weather_id = list.weather.id,",
+						"          weather_main = list.weather.main,",
+						"          wind_deg = list.wind.deg,",
+						"          wind_gust = list.wind.gust,",
+						"          wind_speed = list.wind.speed",
+						"     ),",
+						"     skipDuplicateMapInputs: false,",
+						"     skipDuplicateMapOutputs: false) ~> AssignSourceColumns",
+						"AssignSourceColumns derive(corrected_timestamp = iif(length(toString(timestamp)) == 10, toInteger(timestamp), toInteger(null()))",
+						"",
+						",",
+						"          location = 'Boston') ~> CorrectedTimestampAndLocation",
+						"CorrectedTimestampAndLocation filter(!isNull(temp) && !isNull(humidity) && !isNull(timestamp)",
+						") ~> FilterCriticalColumn",
+						"FilterCriticalColumn derive(date_time = toTimestamp(toLong(corrected_timestamp) * 1000),",
+						"          id = concat(location, '_', toString(corrected_timestamp)),",
+						"          temp_C = round(temp - 273.15, 2),",
+						"          temp_min_C = round(temp_min - 273.15, 2),",
+						"          temp_max_C = round(temp_max - 273.15, 2),",
+						"          feels_like_C = round(feels_like - 273.15, 2),",
+						"          temp_min_F = round((temp_min - 273.15) * 9/5 + 32, 2),",
+						"          temp_max_F = round((temp_max - 273.15) * 9/5 + 32, 2),",
+						"          feels_like_F = round((temp_max - 273.15) * 9/5 + 32, 2),",
+						"          lon = -71.0589,",
+						"          lat = 42.3601,",
+						"          weather_id_value = toInteger(split(toString(weather_id), ': ')[1])",
+						",",
+						"          weather_main_value = split(weather_main, ': ')[1],",
+						"          weather_description_value = split(weather_description, ': ')[1],",
+						"          weather_icon_value = split(weather_icon, ': ')[1]) ~> ProperConversions",
+						"ProperConversions select(mapColumn(",
+						"          feels_like_K = feels_like,",
+						"          temp_K = temp,",
+						"          temp_max_K = temp_max,",
+						"          temp_min_K = temp_min",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> AddKelvinToTemp",
+						"AddKelvinToTemp sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'parquet',",
+						"     umask: 0022,",
+						"     preCommands: [],",
+						"     postCommands: [],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> toSilver"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Stream_WeatherData')]",
+				"[concat(variables('factoryId'), '/datasets/WeatherData')]"
 			]
 		}
 	]

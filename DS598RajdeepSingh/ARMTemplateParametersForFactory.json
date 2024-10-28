@@ -11,13 +11,10 @@
 		"Github_credential": {
 			"value": ""
 		},
-		"Open_Weather_API_Air_Pollution_password": {
+		"HTTP_Open_Weather_API_AirPollution_password": {
 			"value": ""
 		},
 		"Open_Weather_API_Weather_Data_password": {
-			"value": ""
-		},
-		"HTTP_Open_Weather_API_AirPollution_password": {
 			"value": ""
 		},
 		"Data_Lake_Storage_LinkedService_properties_typeProperties_url": {
@@ -26,25 +23,19 @@
 		"Github_properties_typeProperties_username": {
 			"value": "rs1ngh13"
 		},
-		"Key_Vault_LinkedService_properties_typeProperties_baseUrl": {
-			"value": "https://DS598-Homework-Vault.vault.azure.net/"
-		},
-		"Open_Weather_API_Air_Pollution_properties_typeProperties_url": {
+		"HTTP_Open_Weather_API_AirPollution_properties_typeProperties_url": {
 			"value": " http://api.openweathermap.org/ "
 		},
-		"Open_Weather_API_Air_Pollution_properties_typeProperties_userName": {
+		"HTTP_Open_Weather_API_AirPollution_properties_typeProperties_userName": {
 			"value": "rsingh13@bu.edu"
+		},
+		"Key_Vault_LinkedService_properties_typeProperties_baseUrl": {
+			"value": "https://DS598-Homework-Vault.vault.azure.net/"
 		},
 		"Open_Weather_API_Weather_Data_properties_typeProperties_url": {
 			"value": " https://history.openweathermap.org/"
 		},
 		"Open_Weather_API_Weather_Data_properties_typeProperties_userName": {
-			"value": "rsingh13@bu.edu"
-		},
-		"HTTP_Open_Weather_API_AirPollution_properties_typeProperties_url": {
-			"value": " http://api.openweathermap.org/ "
-		},
-		"HTTP_Open_Weather_API_AirPollution_properties_typeProperties_userName": {
 			"value": "rsingh13@bu.edu"
 		}
 	}
