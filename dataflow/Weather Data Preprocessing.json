@@ -83,7 +83,8 @@
 				"          feels_like_F = round((temp_max - 273.15) * 9/5 + 32, 2),",
 				"          lon = -71.0589,",
 				"          lat = 42.3601,",
-				"          weather_id_value = toInteger(split(id, ': ')[1])) ~> ProperConversions"
+				"          weather_id_value = toInteger(split(toString(weather_id), ': ')[1])",
+				") ~> ProperConversions"
 			]
 		}
 	}
