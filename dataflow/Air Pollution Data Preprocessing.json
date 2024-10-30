@@ -102,11 +102,13 @@
 				"Transformation sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
+				"     partitionFileNames:['Air_Pollution_Data_PreProcessing'],",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> toSilver"
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> toSilver"
 			]
 		}
 	}
