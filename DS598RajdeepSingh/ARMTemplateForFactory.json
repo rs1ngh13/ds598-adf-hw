@@ -1114,7 +1114,7 @@
 						"     validateSchema: false,",
 						"     ignoreNoFilesFound: false,",
 						"     documentForm: 'documentPerLine',",
-						"     wildcardPaths:['*.json']) ~> StreamWeatherData",
+						"     wildcardPaths:['*']) ~> StreamWeatherData",
 						"AssignSourceColumns derive(corrected_timestamp = iif(length(toString(timestamp)) == 10, toInteger(timestamp), toInteger(null())),",
 						"          location = 'Boston') ~> CorrectedTimestampAndLocation",
 						"CorrectedTimestampAndLocation filter(!isNull(temp) && !isNull(humidity) && !isNull(corrected_timestamp)) ~> FilterCriticalColumn",
