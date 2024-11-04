@@ -1190,7 +1190,7 @@
 						"select1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     format: 'parquet',",
-						"     partitionFileNames:['WeatherDataPreProcessing.parquet'],",
+						"     partitionFileNames:['WeatherDataPreProcessing'],",
 						"     umask: 0022,",
 						"     preCommands: [],",
 						"     postCommands: [],",
